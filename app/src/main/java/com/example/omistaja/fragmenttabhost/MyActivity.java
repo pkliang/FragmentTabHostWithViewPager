@@ -1,50 +1,35 @@
 package com.example.omistaja.fragmenttabhost;
 
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentTabHost;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.support.v4.app.FragmentTabHost;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
-import android.widget.TextView;
 
 
 public class MyActivity extends ActionBarActivity {
-
-    private FragmentTabHost mTabHost;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
-        mTabHost = (FragmentTabHost) findViewById(R.id.tabhost);
+        FragmentTabHost mTabHost = (FragmentTabHost) findViewById(R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.tabFrameLayout);
         mTabHost.addTab(
-                mTabHost.newTabSpec("tab1").setIndicator("Tab 1", getResources().getDrawable(android.R.drawable.ic_delete)),
+                mTabHost.newTabSpec("tab1").setIndicator("Tab 1"),
                 PlaceholderFragment.class, null);
 
         mTabHost.addTab(
-                mTabHost.newTabSpec("tab2").setIndicator("Tab 2", getResources().getDrawable(android.R.drawable.ic_menu_add)),
-                DemoObjectFragment.class, null);
+                mTabHost.newTabSpec("tab2").setIndicator("Tab 2"),
+                DemoObjectFragment.class, createTagBundle("Tab 2"));
 
         mTabHost.addTab(
-                mTabHost.newTabSpec("tab3").setIndicator("Tab 3", getResources().getDrawable(android.R.drawable.ic_input_get)),
-                DemoObjectFragment.class, null);
+                mTabHost.newTabSpec("tab3").setIndicator("Tab 3"),
+                DemoObjectFragment.class, createTagBundle("Tab 3"));
 
         mTabHost.addTab(
-                mTabHost.newTabSpec("tab4").setIndicator("Tab 4", getResources().getDrawable(android.R.drawable.ic_menu_agenda)),
-                DemoObjectFragment.class, null);
+                mTabHost.newTabSpec("tab4").setIndicator("Tab 4"),
+                DemoObjectFragment.class, createTagBundle("Tab 4"));
     }
 
     @Override
@@ -66,5 +51,9 @@ public class MyActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    private Bundle createTagBundle(String tag) {
+        Bundle args = new Bundle();
+        args.putString(DemoObjectFragment.ARG_OBJECT, tag);
+        return args;
+    }
 }
