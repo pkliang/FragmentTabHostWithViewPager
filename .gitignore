@@ -10,6 +10,7 @@ gen
 
 #IntelliJ IDEA
 .idea
+.gradle
 *.iml
 *.ipr
 *.iws

@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.astuetz.PagerSlidingTabStrip;
 import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.List;
@@ -50,7 +51,8 @@ public class PlaceholderFragment extends Fragment {
                         getChildFragmentManager());
         mViewPager = (ViewPager) view.findViewById(R.id.pager);
         mViewPager.setAdapter(mDemoCollectionPagerAdapter);
-        TabPageIndicator indicator = (TabPageIndicator)view.findViewById(R.id.indicator);
+        TabPageIndicator  indicator = (TabPageIndicator)view.findViewById(R.id.indicator);
+        //indicator.setShouldExpand(true);
         indicator.setViewPager(mViewPager);
 
     }
@@ -89,7 +91,7 @@ public class PlaceholderFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return 30;
+            return 10;
         }
 
         @Override
